@@ -1,6 +1,31 @@
+:root {
+  /* --- CSS Custom Properties for easy theming and scaling. */
+  --tile-size-base: 90px;
+  --tile-size-large: 130px;
+  --grid-gap: 8px;
+  --border-radius: 16px;
+  --symbol-size-ratio: 0.5;
+
+  /* --- Color Palette */
+  --color-bg: #1a1a2e;
+  --color-tile: #0f3460;
+  --color-tile-hover: #537895;
+  --color-x: #e94560;
+  --color-o: #f8b400;
+  --color-overlay-bg: hsla(233, 55%, 9%, 0.85);
+  --color-text-light: #ffffff;
+  --color-button: #e94560;
+  --color-button-hover: #c8324c;
+  --color-text-dark: #1a1a2e;
+}
+
+/* ==========================================================================
+                      1. Base & Layout Styles
+========================================================================== */
+
 body {
-  background-color: #1a1a2e;
-  color: #e0e0e0;
+  background-color: var(--color-bg);
+  color: var(--color-text-light);
   font-family: 'Montserrat', sans-serif;
   display: flex;
   justify-content: center;
@@ -11,339 +36,124 @@ body {
   box-sizing: border-box;
 }
 
+.hidden {
+  display: none !important;
+}
+
 /* ==========================================================================
-            2. Game Component: .noughts-and-crosses-board
+                      2. Mode Selection Screen
 ========================================================================== */
+.mode-selection-screen {
+  text-align: center;
+}
+
+.mode-selection-screen h1 {
+  font-size: 3rem;
+  font-weight: 300;
+  margin-bottom: 2rem;
+}
+
+.mode-btn {
+  background-color: var(--color-button);
+  color: var(--color-text-light);
+  font-size: 1.2rem;
+  font-weight: bold;
+  padding: 1rem 3rem;
+  border-radius: 50px;
+  text-decoration: none;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+  border: none;
+  margin: 0.5rem;
+  cursor: pointer;
+  min-width: 250px;
+}
+
+.mode-btn:hover,
+.mode-btn:focus {
+  background-color: var(--color-button-hover);
+  transform: translateY(-3px);
+  outline: none;
+}
+
+
+/* ==========================================================================
+                          3. Game Component
+========================================================================== */
+#game-status {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 300;
+  margin-bottom: 1.5rem;
+  min-height: 2rem;
+  /* Prevent layout shift */
+}
 
 .noughts-and-crosses-board {
-  /* --- CSS Custom Properties for easy theming and scaling. */
-  --tile-size-base: 90px;
-  --tile-size-large: 130px;
-  --grid-gap: 8px;
-  --border-radius: 16px;
-  --symbol-size-ratio: 0.5;
-
-  /* --- Color Palette */
-  --color-bg: #16213e;
-  --color-tile: #0f3460;
-  --color-tile-hover: #537895;
-  --color-x: #e94560;
-  --color-o: #f8b400;
-  --color-overlay-bg: hsla(233, 55%, 9%, 0.85);
-  --color-text-light: #ffffff;
-  --color-button: #e94560;
-  --color-button-hover: #c8324c;
-
-  /* --- Sizing and Positioning Context */
   position: relative;
-  width: calc(3 * var(--tile-size-base) + 2 * var(--grid-gap));
-  height: calc(3 * var(--tile-size-base) + 2 * var(--grid-gap));
-  margin: auto;
-  background-color: var(--color-bg);
+  display: grid;
+  grid-template-columns: repeat(3, var(--tile-size-base));
+  grid-template-rows: repeat(3, var(--tile-size-base));
+  gap: var(--grid-gap);
+  background-color: #16213e;
   border-radius: var(--border-radius);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
 @media (min-width: 500px) {
   .noughts-and-crosses-board {
-    width: calc(3 * var(--tile-size-large) + 2 * var(--grid-gap));
-    height: calc(3 * var(--tile-size-large) + 2 * var(--grid-gap));
+    grid-template-columns: repeat(3, var(--tile-size-large));
+    grid-template-rows: repeat(3, var(--tile-size-large));
   }
 }
 
-/* -----------------------------------------------
-   >> The State Machine (Hidden Radio Inputs)
------------------------------------------------ */
-
-.board__input {
-  /* The radio buttons are the engine, but they are never seen. */
-  display: none;
-}
-
-/* --- THIS IS THE CRITICAL FIX --- */
-/* When any input is checked, give its label the highest z-index. */
-.board__input:checked+.board__tile {
-  z-index: 10 !important;
-  /* Locks the tile visually */
-  cursor: not-allowed;
-}
-
-/* --- Player Colors & Symbols --- */
-/* Apply a background color to the tile of a checked input. */
-.board__input.player-x:checked+.board__tile,
-.board__input.player-x:checked+.board__tile:hover {
-  background-color: var(--color-x);
-}
-
-.board__input.player-o:checked+.board__tile,
-.board__input.player-o:checked+.board__tile:hover {
-  background-color: var(--color-o);
-}
-
-/* Define the symbol for each player using pseudo-elements on the label. */
-.board__input.player-x+.board__tile::after {
-  content: '\2715';
-  /* ✕ */
-}
-
-.board__input.player-o+.board__tile::after {
-  content: '\25CB';
-  /* ○ */
-}
-
-/* When a tile is selected, make its symbol visible with an animation. */
-.board__input:checked+.board__tile::after {
-  opacity: 1;
-  transform: scale(1);
-}
-
-/* --- Turn Progression Logic --- */
-.board__input.move-1+.board__tile {
-  z-index: 1;
-}
-
-.board__input.move-2+.board__tile {
-  z-index: 2;
-}
-
-.board__input.move-3+.board__tile {
-  z-index: 3;
-}
-
-.board__input.move-4+.board__tile {
-  z-index: 4;
-}
-
-.board__input.move-5+.board__tile {
-  z-index: 5;
-}
-
-.board__input.move-6+.board__tile {
-  z-index: 6;
-}
-
-.board__input.move-7+.board__tile {
-  z-index: 7;
-}
-
-.board__input.move-8+.board__tile {
-  z-index: 8;
-}
-
-.board__input.move-9+.board__tile {
-  z-index: 9;
-}
-
-/* Initially, only tiles for the first move are clickable. */
-.board__input.move-1+.board__tile {
-  pointer-events: auto;
-}
-
-/* When a move is made, enable the tiles for the *next* move. */
-.board__input.move-1:checked~.board__input.move-2+.board__tile {
-  pointer-events: auto;
-}
-
-.board__input.move-2:checked~.board__input.move-3+.board__tile {
-  pointer-events: auto;
-}
-
-.board__input.move-3:checked~.board__input.move-4+.board__tile {
-  pointer-events: auto;
-}
-
-.board__input.move-4:checked~.board__input.move-5+.board__tile {
-  pointer-events: auto;
-}
-
-.board__input.move-5:checked~.board__input.move-6+.board__tile {
-  pointer-events: auto;
-}
-
-.board__input.move-6:checked~.board__input.move-7+.board__tile {
-  pointer-events: auto;
-}
-
-.board__input.move-7:checked~.board__input.move-8+.board__tile {
-  pointer-events: auto;
-}
-
-.board__input.move-8:checked~.board__input.move-9+.board__tile {
-  pointer-events: auto;
-}
-
-/* --- Grid Positioning Logic --- */
-.board__input.row-1+.board__tile {
-  top: calc((1 - 1) * (var(--tile-size-base) + var(--grid-gap)));
-}
-
-.board__input.col-1+.board__tile {
-  left: calc((1 - 1) * (var(--tile-size-base) + var(--grid-gap)));
-}
-
-.board__input.row-2+.board__tile {
-  top: calc((2 - 1) * (var(--tile-size-base) + var(--grid-gap)));
-}
-
-.board__input.col-2+.board__tile {
-  left: calc((2 - 1) * (var(--tile-size-base) + var(--grid-gap)));
-}
-
-.board__input.row-3+.board__tile {
-  top: calc((3 - 1) * (var(--tile-size-base) + var(--grid-gap)));
-}
-
-.board__input.col-3+.board__tile {
-  left: calc((3 - 1) * (var(--tile-size-base) + var(--grid-gap)));
-}
-
-@media (min-width: 500px) {
-  .board__input.row-1+.board__tile {
-    top: calc((1 - 1) * (var(--tile-size-large) + var(--grid-gap)));
-  }
-
-  .board__input.col-1+.board__tile {
-    left: calc((1 - 1) * (var(--tile-size-large) + var(--grid-gap)));
-  }
-
-  .board__input.row-2+.board__tile {
-    top: calc((2 - 1) * (var(--tile-size-large) + var(--grid-gap)));
-  }
-
-  .board__input.col-2+.board__tile {
-    left: calc((2 - 1) * (var(--tile-size-large) + var(--grid-gap)));
-  }
-
-  .board__input.row-3+.board__tile {
-    top: calc((3 - 1) * (var(--tile-size-large) + var(--grid-gap)));
-  }
-
-  .board__input.col-3+.board__tile {
-    left: calc((3 - 1) * (var(--tile-size-large) + var(--grid-gap)));
-  }
-}
-
-/* -----------------------------------------------
-         >> The Interface (Clickable Tiles)
-         ----------------------------------------------- */
 .board__tile {
   background-color: var(--color-tile);
   border-radius: var(--border-radius);
   cursor: pointer;
-  position: absolute;
-  width: var(--tile-size-base);
-  height: var(--tile-size-base);
   transition: background-color 0.2s ease-in-out;
-  pointer-events: none;
-  /* Disabled by default, enabled by turn logic. */
-}
-
-@media (min-width: 500px) {
-  .board__tile {
-    width: var(--tile-size-large);
-    height: var(--tile-size-large);
-  }
-}
-
-.board__tile:hover {
-  background-color: var(--color-tile-hover);
-}
-
-.board__tile::after {
-  color: var(--color-text-light);
-  font-size: calc(var(--tile-size-base) * var(--symbol-size-ratio));
+  display: flex;
+  justify-content: center;
+  align-items: center;
   font-weight: bold;
-  line-height: var(--tile-size-base);
-  text-align: center;
-  position: absolute;
-  inset: 0;
-  opacity: 0;
-  transform: scale(0.5);
-  transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  font-size: calc(var(--tile-size-base) * var(--symbol-size-ratio));
   text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 @media (min-width: 500px) {
-  .board__tile::after {
+  .board__tile {
     font-size: calc(var(--tile-size-large) * var(--symbol-size-ratio));
-    line-height: var(--tile-size-large);
   }
 }
 
-/* -----------------------------------------------
-         >> Game Over Logic & Screen
-         ----------------------------------------------- */
-
-/* Player X Win Conditions */
-.board__input.player-x.row-1:checked~.board__input.player-x.row-1:checked~.board__input.player-x.row-1:checked~.game-over-overlay,
-.board__input.player-x.row-2:checked~.board__input.player-x.row-2:checked~.board__input.player-x.row-2:checked~.game-over-overlay,
-.board__input.player-x.row-3:checked~.board__input.player-x.row-3:checked~.board__input.player-x.row-3:checked~.game-over-overlay,
-.board__input.player-x.col-1:checked~.board__input.player-x.col-1:checked~.board__input.player-x.col-1:checked~.game-over-overlay,
-.board__input.player-x.col-2:checked~.board__input.player-x.col-2:checked~.board__input.player-x.col-2:checked~.game-over-overlay,
-.board__input.player-x.col-3:checked~.board__input.player-x.col-3:checked~.board__input.player-x.col-3:checked~.game-over-overlay,
-.board__input.player-x.diag-main:checked~.board__input.player-x.diag-main:checked~.board__input.player-x.diag-main:checked~.game-over-overlay,
-.board__input.player-x.diag-anti:checked~.board__input.player-x.diag-anti:checked~.board__input.player-x.diag-anti:checked~.game-over-overlay {
-  display: flex;
+.board__tile:not(.x):not(.o):hover {
+  background-color: var(--color-tile-hover);
 }
 
-.board__input.player-x.row-1:checked~.board__input.player-x.row-1:checked~.board__input.player-x.row-1:checked~.game-over-overlay .result-message::before,
-.board__input.player-x.row-2:checked~.board__input.player-x.row-2:checked~.board__input.player-x.row-2:checked~.game-over-overlay .result-message::before,
-.board__input.player-x.row-3:checked~.board__input.player-x.row-3:checked~.board__input.player-x.row-3:checked~.game-over-overlay .result-message::before,
-.board__input.player-x.col-1:checked~.board__input.player-x.col-1:checked~.board__input.player-x.col-1:checked~.game-over-overlay .result-message::before,
-.board__input.player-x.col-2:checked~.board__input.player-x.col-2:checked~.board__input.player-x.col-2:checked~.game-over-overlay .result-message::before,
-.board__input.player-x.col-3:checked~.board__input.player-x.col-3:checked~.board__input.player-x.col-3:checked~.game-over-overlay .result-message::before,
-.board__input.player-x.diag-main:checked~.board__input.player-x.diag-main:checked~.board__input.player-x.diag-main:checked~.game-over-overlay .result-message::before,
-.board__input.player-x.diag-anti:checked~.board__input.player-x.diag-anti:checked~.board__input.player-x.diag-anti:checked~.game-over-overlay .result-message::before {
-  content: 'Player "X" Wins!';
+/* Player symbol styling */
+.board__tile.x {
+  color: var(--color-x);
+  cursor: not-allowed;
 }
 
-/* Player O Win Conditions */
-.board__input.player-o.row-1:checked~.board__input.player-o.row-1:checked~.board__input.player-o.row-1:checked~.game-over-overlay,
-.board__input.player-o.row-2:checked~.board__input.player-o.row-2:checked~.board__input.player-o.row-2:checked~.game-over-overlay,
-.board__input.player-o.row-3:checked~.board__input.player-o.row-3:checked~.board__input.player-o.row-3:checked~.game-over-overlay,
-.board__input.player-o.col-1:checked~.board__input.player-o.col-1:checked~.board__input.player-o.col-1:checked~.game-over-overlay,
-.board__input.player-o.col-2:checked~.board__input.player-o.col-2:checked~.board__input.player-o.col-2:checked~.game-over-overlay,
-.board__input.player-o.col-3:checked~.board__input.player-o.col-3:checked~.board__input.player-o.col-3:checked~.game-over-overlay,
-.board__input.player-o.diag-main:checked~.board__input.player-o.diag-main:checked~.board__input.player-o.diag-main:checked~.game-over-overlay,
-.board__input.player-o.diag-anti:checked~.board__input.player-o.diag-anti:checked~.board__input.player-o.diag-anti:checked~.game-over-overlay {
-  display: flex;
+.board__tile.o {
+  color: var(--color-o);
+  cursor: not-allowed;
 }
 
-.board__input.player-o.row-1:checked~.board__input.player-o.row-1:checked~.board__input.player-o.row-1:checked~.game-over-overlay .result-message::before,
-.board__input.player-o.row-2:checked~.board__input.player-o.row-2:checked~.board__input.player-o.row-2:checked~.game-over-overlay .result-message::before,
-.board__input.player-o.row-3:checked~.board__input.player-o.row-3:checked~.board__input.player-o.row-3:checked~.game-over-overlay .result-message::before,
-.board__input.player-o.col-1:checked~.board__input.player-o.col-1:checked~.board__input.player-o.col-1:checked~.game-over-overlay .result-message::before,
-.board__input.player-o.col-2:checked~.board__input.player-o.col-2:checked~.board__input.player-o.col-2:checked~.game-over-overlay .result-message::before,
-.board__input.player-o.col-3:checked~.board__input.player-o.col-3:checked~.board__input.player-o.col-3:checked~.game-over-overlay .result-message::before,
-.board__input.player-o.diag-main:checked~.board__input.player-o.diag-main:checked~.board__input.player-o.diag-main:checked~.game-over-overlay .result-message::before,
-.board__input.player-o.diag-anti:checked~.board__input.player-o.diag-anti:checked~.board__input.player-o.diag-anti:checked~.game-over-overlay .result-message::before {
-  content: 'Player "O" Wins!';
-}
-
-/* Tie Condition: Triggers when 9 inputs are checked. */
-.board__input:checked~.board__input:checked~.board__input:checked~.board__input:checked~.board__input:checked~.board__input:checked~.board__input:checked~.board__input:checked~.board__input:checked~.game-over-overlay {
-  display: flex;
-}
-
-.board__input:checked~.board__input:checked~.board__input:checked~.board__input:checked~.board__input:checked~.board__input:checked~.board__input:checked~.board__input:checked~.board__input:checked~.game-over-overlay .result-message::before {
-  /* This is overridden by a win condition if one is met on the 9th move. */
-  content: "It's a Draw!";
-}
-
-/* --- Game Over Screen Styling --- */
+/* ==========================================================================
+                          4. Game Over Screen
+========================================================================== */
 .game-over-overlay {
-  position: absolute;
+  position: fixed;
   inset: 0;
   background-color: var(--color-overlay-bg);
   -webkit-backdrop-filter: blur(5px);
   backdrop-filter: blur(5px);
-  display: none;
-  /* Initial state; changed to 'flex' by win/tie logic. */
+  display: flex;
+  /* Changed from none to flex */
   justify-content: center;
   align-items: center;
-  z-index: 11;
-  /* Must be higher than a checked tile's z-index */
-  border-radius: var(--border-radius);
+  z-index: 100;
   animation: fadeIn 0.5s ease;
 }
 
@@ -387,12 +197,13 @@ body {
   border-radius: 50px;
   text-decoration: none;
   transition: background-color 0.2s ease, transform 0.2s ease;
+  border: none;
+  cursor: pointer;
 }
 
 .restart-btn:hover,
 .restart-btn:focus {
   background-color: var(--color-button-hover);
   transform: translateY(-3px);
-  cursor: pointer;
   outline: none;
 }
