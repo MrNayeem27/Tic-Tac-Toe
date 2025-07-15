@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Noughts & Crosses | Pure CSS</title>
+
+        <!-- Importing a custom font for a more polished look -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;700&display=swap"
+            rel="stylesheet">
+        <link rel="stylesheet" href="assets/css/style.css">
+        
+    </head>
+    <body>
+        
+        <div class="noughts-and-crosses-board">
+           
+            <!-- Turn 1 -->
+            <input type="radio" id="cell-1-1-turn-1"
+                class="board__input player-x move-1 row-1 col-1 diag-main"><label
+                class="board__tile" for="cell-1-1-turn-1"></label>
+            <input type="radio" id="cell-1-2-turn-1"
+                class="board__input player-x move-1 row-1 col-2"><label
+                class="board__tile" for="cell-1-2-turn-1"></label>
+            <input type="radio" id="cell-1-3-turn-1"
+                class="board__input player-x move-1 row-1 col-3 diag-anti"><label
+                class="board__tile" for="cell-1-3-turn-1"></label>
+            <input type="radio" id="cell-2-1-turn-1"
+                class="board__input player-x move-1 row-2 col-1"><label
+                class="board__tile" for="cell-2-1-turn-1"></label>
+            <input type="radio" id="cell-2-2-turn-1"
+                class="board__input player-x move-1 row-2 col-2 diag-main diag-anti"><label
+                class="board__tile" for="cell-2-2-turn-1"></label>
+            <input type="radio" id="cell-2-3-turn-1"
+                class="board__input player-x move-1 row-2 col-3"><label
+                class="board__tile" for="cell-2-3-turn-1"></label>
+            <input type="radio" id="cell-3-1-turn-1"
+                class="board__input player-x move-1 row-3 col-1 diag-anti"><label
+                class="board__tile" for="cell-3-1-turn-1"></label>
+            <input type="radio" id="cell-3-2-turn-1"
+                class="board__input player-x move-1 row-3 col-2"><label
+                class="board__tile" for="cell-3-2-turn-1"></label>
+            <input type="radio" id="cell-3-3-turn-1"
+                class="board__input player-x move-1 row-3 col-3 diag-main"><label
+                class="board__tile" for="cell-3-3-turn-1"></label>
+
+                
+            <!-- Turn 2 -->
+            <input type="radio" id="cell-1-1-turn-2"
+                class="board__input player-o move-2 row-1 col-1 diag-main"><label
+                class="board__tile" for="cell-1-1-turn-2"></label>
+            <input type="radio" id="cell-1-2-turn-2"
+                class="board__input player-o move-2 row-1 col-2"><label
+                class="board__tile" for="cell-1-2-turn-2"></label>
+            <input type="radio" id="cell-1-3-turn-2"
+                class="board__input player-o move-2 row-1 col-3 diag-anti"><label
+                class="board__tile" for="cell-1-3-turn-2"></label>
+            <input type="radio" id="cell-2-1-turn-2"
+                class="board__input player-o move-2 row-2 col-1"><label
+                class="board__tile" for="cell-2-1-turn-2"></label>
+            <input type="radio" id="cell-2-2-turn-2"
+                class="board__input player-o move-2 row-2 col-2 diag-main diag-anti"><label
+                class="board__tile" for="cell-2-2-turn-2"></label>
+            <input type="radio" id="cell-2-3-turn-2"
+                class="board__input player-o move-2 row-2 col-3"><label
+                class="board__tile" for="cell-2-3-turn-2"></label>
+            <input type="radio" id="cell-3-1-turn-2"
+                class="board__input player-o move-2 row-3 col-1 diag-anti"><label
+                class="board__tile" for="cell-3-1-turn-2"></label>
+            <input type="radio" id="cell-3-2-turn-2"
+                class="board__input player-o move-2 row-3 col-2"><label
+                class="board__tile" for="cell-3-2-turn-2"></label>
+            <input type="radio" id="cell-3-3-turn-2"
+                class="board__input player-o move-2 row-3 col-3 diag-main"><label
+                class="board__tile" for="cell-3-3-turn-2"></label>
+
+
+            <!-- Turn 3 -->
+            <input type="radio" id="cell-1-1-turn-3"
+                class="board__input player-x move-3 row-1 col-1 diag-main"><label
+                class="board__tile" for="cell-1-1-turn-3"></label>
+            <input type="radio" id="cell-1-2-turn-3"
+                class="board__input player-x move-3 row-1 col-2"><label
+                class="board__tile" for="cell-1-2-turn-3"></label>
+            <input type="radio" id="cell-1-3-turn-3"
+                class="board__input player-x move-3 row-1 col-3 diag-anti"><label
+                class="board__tile" for="cell-1-3-turn-3"></label>
+            <input type="radio" id="cell-2-1-turn-3"
+                class="board__input player-x move-3 row-2 col-1"><label
+                class="board__tile" for="cell-2-1-turn-3"></label>
+            <input type="radio" id="cell-2-2-turn-3"
+                class="board__input player-x move-3 row-2 col-2 diag-main diag-anti"><label
+                class="board__tile" for="cell-2-2-turn-3"></label>
+            <input type="radio" id="cell-2-3-turn-3"
+                class="board__input player-x move-3 row-2 col-3"><label
+                class="board__tile" for="cell-2-3-turn-3"></label>
+            <input type="radio" id="cell-3-1-turn-3"
+                class="board__input player-x move-3 row-3 col-1 diag-anti"><label
+                class="board__tile" for="cell-3-1-turn-3"></label>
+            <input type="radio" id="cell-3-2-turn-3"
+                class="board__input player-x move-3 row-3 col-2"><label
+                class="board__tile" for="cell-3-2-turn-3"></label>
+            <input type="radio" id="cell-3-3-turn-3"
+                class="board__input player-x move-3 row-3 col-3 diag-main"><label
+                class="board__tile" for="cell-3-3-turn-3"></label>
+
+
+            <!-- Turn 4 -->
+            <input type="radio" id="cell-1-1-turn-4"
+                class="board__input player-o move-4 row-1 col-1 diag-main"><label
+                class="board__tile" for="cell-1-1-turn-4"></label>
+            <input type="radio" id="cell-1-2-turn-4"
+                class="board__input player-o move-4 row-1 col-2"><label
+                class="board__tile" for="cell-1-2-turn-4"></label>
+            <input type="radio" id="cell-1-3-turn-4"
+                class="board__input player-o move-4 row-1 col-3 diag-anti"><label
+                class="board__tile" for="cell-1-3-turn-4"></label>
+            <input type="radio" id="cell-2-1-turn-4"
+                class="board__input player-o move-4 row-2 col-1"><label
+                class="board__tile" for="cell-2-1-turn-4"></label>
+            <input type="radio" id="cell-2-2-turn-4"
+                class="board__input player-o move-4 row-2 col-2 diag-main diag-anti"><label
+                class="board__tile" for="cell-2-2-turn-4"></label>
+            <input type="radio" id="cell-2-3-turn-4"
+                class="board__input player-o move-4 row-2 col-3"><label
+                class="board__tile" for="cell-2-3-turn-4"></label>
+            <input type="radio" id="cell-3-1-turn-4"
+                class="board__input player-o move-4 row-3 col-1 diag-anti"><label
+                class="board__tile" for="cell-3-1-turn-4"></label>
+            <input type="radio" id="cell-3-2-turn-4"
+                class="board__input player-o move-4 row-3 col-2"><label
+                class="board__tile" for="cell-3-2-turn-4"></label>
+            <input type="radio" id="cell-3-3-turn-4"
+                class="board__input player-o move-4 row-3 col-3 diag-main"><label
+                class="board__tile" for="cell-3-3-turn-4"></label>
+
+
+            <!-- Turn 5 -->
+            <input type="radio" id="cell-1-1-turn-5"
+                class="board__input player-x move-5 row-1 col-1 diag-main"><label
+                class="board__tile" for="cell-1-1-turn-5"></label>
+            <input type="radio" id="cell-1-2-turn-5"
+                class="board__input player-x move-5 row-1 col-2"><label
+                class="board__tile" for="cell-1-2-turn-5"></label>
+            <input type="radio" id="cell-1-3-turn-5"
+                class="board__input player-x move-5 row-1 col-3 diag-anti"><label
+                class="board__tile" for="cell-1-3-turn-5"></label>
+            <input type="radio" id="cell-2-1-turn-5"
+                class="board__input player-x move-5 row-2 col-1"><label
+                class="board__tile" for="cell-2-1-turn-5"></label>
+            <input type="radio" id="cell-2-2-turn-5"
+                class="board__input player-x move-5 row-2 col-2 diag-main diag-anti"><label
+                class="board__tile" for="cell-2-2-turn-5"></label>
+            <input type="radio" id="cell-2-3-turn-5"
+                class="board__input player-x move-5 row-2 col-3"><label
+                class="board__tile" for="cell-2-3-turn-5"></label>
+            <input type="radio" id="cell-3-1-turn-5"
+                class="board__input player-x move-5 row-3 col-1 diag-anti"><label
+                class="board__tile" for="cell-3-1-turn-5"></label>
+            <input type="radio" id="cell-3-2-turn-5"
+                class="board__input player-x move-5 row-3 col-2"><label
+                class="board__tile" for="cell-3-2-turn-5"></label>
+            <input type="radio" id="cell-3-3-turn-5"
+                class="board__input player-x move-5 row-3 col-3 diag-main"><label
+                class="board__tile" for="cell-3-3-turn-5"></label>
+
+
+            <!-- Turn 6 -->
+            <input type="radio" id="cell-1-1-turn-6"
+                class="board__input player-o move-6 row-1 col-1 diag-main"><label
+                class="board__tile" for="cell-1-1-turn-6"></label>
+            <input type="radio" id="cell-1-2-turn-6"
+                class="board__input player-o move-6 row-1 col-2"><label
+                class="board__tile" for="cell-1-2-turn-6"></label>
+            <input type="radio" id="cell-1-3-turn-6"
+                class="board__input player-o move-6 row-1 col-3 diag-anti"><label
+                class="board__tile" for="cell-1-3-turn-6"></label>
+            <input type="radio" id="cell-2-1-turn-6"
+                class="board__input player-o move-6 row-2 col-1"><label
+                class="board__tile" for="cell-2-1-turn-6"></label>
+            <input type="radio" id="cell-2-2-turn-6"
+                class="board__input player-o move-6 row-2 col-2 diag-main diag-anti"><label
+                class="board__tile" for="cell-2-2-turn-6"></label>
+            <input type="radio" id="cell-2-3-turn-6"
+                class="board__input player-o move-6 row-2 col-3"><label
+                class="board__tile" for="cell-2-3-turn-6"></label>
+            <input type="radio" id="cell-3-1-turn-6"
+                class="board__input player-o move-6 row-3 col-1 diag-anti"><label
+                class="board__tile" for="cell-3-1-turn-6"></label>
+            <input type="radio" id="cell-3-2-turn-6"
+                class="board__input player-o move-6 row-3 col-2"><label
+                class="board__tile" for="cell-3-2-turn-6"></label>
+            <input type="radio" id="cell-3-3-turn-6"
+                class="board__input player-o move-6 row-3 col-3 diag-main"><label
+                class="board__tile" for="cell-3-3-turn-6"></label>
+
+
+            <!-- Turn 7 -->
+            <input type="radio" id="cell-1-1-turn-7"
+                class="board__input player-x move-7 row-1 col-1 diag-main"><label
+                class="board__tile" for="cell-1-1-turn-7"></label>
+            <input type="radio" id="cell-1-2-turn-7"
+                class="board__input player-x move-7 row-1 col-2"><label
+                class="board__tile" for="cell-1-2-turn-7"></label>
+            <input type="radio" id="cell-1-3-turn-7"
+                class="board__input player-x move-7 row-1 col-3 diag-anti"><label
+                class="board__tile" for="cell-1-3-turn-7"></label>
+            <input type="radio" id="cell-2-1-turn-7"
+                class="board__input player-x move-7 row-2 col-1"><label
+                class="board__tile" for="cell-2-1-turn-7"></label>
+            <input type="radio" id="cell-2-2-turn-7"
+                class="board__input player-x move-7 row-2 col-2 diag-main diag-anti"><label
+                class="board__tile" for="cell-2-2-turn-7"></label>
+            <input type="radio" id="cell-2-3-turn-7"
+                class="board__input player-x move-7 row-2 col-3"><label
+                class="board__tile" for="cell-2-3-turn-7"></label>
+            <input type="radio" id="cell-3-1-turn-7"
+                class="board__input player-x move-7 row-3 col-1 diag-anti"><label
+                class="board__tile" for="cell-3-1-turn-7"></label>
+            <input type="radio" id="cell-3-2-turn-7"
+                class="board__input player-x move-7 row-3 col-2"><label
+                class="board__tile" for="cell-3-2-turn-7"></label>
+            <input type="radio" id="cell-3-3-turn-7"
+                class="board__input player-x move-7 row-3 col-3 diag-main"><label
+                class="board__tile" for="cell-3-3-turn-7"></label>
+
+
+            <!-- Turn 8 -->
+            <input type="radio" id="cell-1-1-turn-8"
+                class="board__input player-o move-8 row-1 col-1 diag-main"><label
+                class="board__tile" for="cell-1-1-turn-8"></label>
+            <input type="radio" id="cell-1-2-turn-8"
+                class="board__input player-o move-8 row-1 col-2"><label
+                class="board__tile" for="cell-1-2-turn-8"></label>
+            <input type="radio" id="cell-1-3-turn-8"
+                class="board__input player-o move-8 row-1 col-3 diag-anti"><label
+                class="board__tile" for="cell-1-3-turn-8"></label>
+            <input type="radio" id="cell-2-1-turn-8"
+                class="board__input player-o move-8 row-2 col-1"><label
+                class="board__tile" for="cell-2-1-turn-8"></label>
+            <input type="radio" id="cell-2-2-turn-8"
+                class="board__input player-o move-8 row-2 col-2 diag-main diag-anti"><label
+                class="board__tile" for="cell-2-2-turn-8"></label>
+            <input type="radio" id="cell-2-3-turn-8"
+                class="board__input player-o move-8 row-2 col-3"><label
+                class="board__tile" for="cell-2-3-turn-8"></label>
+            <input type="radio" id="cell-3-1-turn-8"
+                class="board__input player-o move-8 row-3 col-1 diag-anti"><label
+                class="board__tile" for="cell-3-1-turn-8"></label>
+            <input type="radio" id="cell-3-2-turn-8"
+                class="board__input player-o move-8 row-3 col-2"><label
+                class="board__tile" for="cell-3-2-turn-8"></label>
+            <input type="radio" id="cell-3-3-turn-8"
+                class="board__input player-o move-8 row-3 col-3 diag-main"><label
+                class="board__tile" for="cell-3-3-turn-8"></label>
+
+
+            <!-- Turn 9 -->
+            <input type="radio" id="cell-1-1-turn-9"
+                class="board__input player-x move-9 row-1 col-1 diag-main"><label
+                class="board__tile" for="cell-1-1-turn-9"></label>
+            <input type="radio" id="cell-1-2-turn-9"
+                class="board__input player-x move-9 row-1 col-2"><label
+                class="board__tile" for="cell-1-2-turn-9"></label>
+            <input type="radio" id="cell-1-3-turn-9"
+                class="board__input player-x move-9 row-1 col-3 diag-anti"><label
+                class="board__tile" for="cell-1-3-turn-9"></label>
+            <input type="radio" id="cell-2-1-turn-9"
+                class="board__input player-x move-9 row-2 col-1"><label
+                class="board__tile" for="cell-2-1-turn-9"></label>
+            <input type="radio" id="cell-2-2-turn-9"
+                class="board__input player-x move-9 row-2 col-2 diag-main diag-anti"><label
+                class="board__tile" for="cell-2-2-turn-9"></label>
+            <input type="radio" id="cell-2-3-turn-9"
+                class="board__input player-x move-9 row-2 col-3"><label
+                class="board__tile" for="cell-2-3-turn-9"></label>
+            <input type="radio" id="cell-3-1-turn-9"
+                class="board__input player-x move-9 row-3 col-1 diag-anti"><label
+                class="board__tile" for="cell-3-1-turn-9"></label>
+            <input type="radio" id="cell-3-2-turn-9"
+                class="board__input player-x move-9 row-3 col-2"><label
+                class="board__tile" for="cell-3-2-turn-9"></label>
+            <input type="radio" id="cell-3-3-turn-9"
+                class="board__input player-x move-9 row-3 col-3 diag-main"><label
+                class="board__tile" for="cell-3-3-turn-9"></label>
+
+
+            <div class="game-over-overlay">
+                <div class="game-over-content">
+                    <h2 class="result-message"></h2>
+                    <a class="restart-btn" href>New Game</a>
+                </div>
+            </div>
+        </div>
+
+    </body>
+</html>
